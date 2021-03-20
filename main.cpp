@@ -135,7 +135,7 @@ void forwardSelection(dataSet s, int k_fold){
             vFeatureList.push_back(i);
             if(k_fold == 1) prevAccuracy = kFold(s, vFeatureList);
             else               prevAccuracy = kFold(s, vFeatureList, bestNumWrong);
-            cout << "\tUsing feature(s) " << printSubset(vFeatureList) << " previousAccuracy is " << prevAccuracy << "%\n";   
+            cout << "\tUsing feature(s) " << printSubset(vFeatureList) << " accuracy is " << prevAccuracy << "%\n";   
             if(prevAccuracy > bestpreviousAccuracy){
                 bestpreviousAccuracy = prevAccuracy;
                 tempFeature = i;
@@ -145,7 +145,7 @@ void forwardSelection(dataSet s, int k_fold){
         }
         if(previousAccuracy == bestpreviousAccuracy) break;
         vFeatureList.push_back(tempFeature);
-        cout << "Feature dataSet " << printSubset(vFeatureList) << " was best, previousAccuracy is " << bestpreviousAccuracy << "%\n";
+        cout << "Feature dataSet " << printSubset(vFeatureList) << " was best, accuracy is " << bestpreviousAccuracy << "%\n";
     }
     cout << "Finished search! The best feature subdataSet is " << printSubset(vFeatureList) << ", which has an accuracy of " << bestpreviousAccuracy << "%\n";
 }
@@ -160,7 +160,7 @@ void backwardElimination(dataSet s){
             tFeatureList = vFeatureList;
             tFeatureList.erase(tFeatureList.begin() + i);
             prevAccuracy = kFold(s, tFeatureList);
-            cout << "\tUsing feature(s) " << printSubset(tFeatureList) << " previousAccuracy is " << prevAccuracy << "%\n";   
+            cout << "\tUsing feature(s) " << printSubset(tFeatureList) << " accuracy is " << prevAccuracy << "%\n";   
             if(prevAccuracy > bestpreviousAccuracy){
                 bestpreviousAccuracy = prevAccuracy;
                 tempFeature = i;
@@ -168,7 +168,7 @@ void backwardElimination(dataSet s){
         }
         if(previousAccuracy == bestpreviousAccuracy) break;
         vFeatureList.erase(vFeatureList.begin() + tempFeature);
-        cout << "Feature dataSet " << printSubset(vFeatureList) << " was best, previousAccuracy is " << bestpreviousAccuracy << "%\n";
+        cout << "Feature dataSet " << printSubset(vFeatureList) << " was best, accuracy is " << bestpreviousAccuracy << "%\n";
     }
     cout << "Finished search! The best feature subdataSet is " << printSubset(vFeatureList) << ", which has an accuracy of " << bestpreviousAccuracy << "%\n";
 }
